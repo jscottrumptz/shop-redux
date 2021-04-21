@@ -4,15 +4,19 @@ import { QUERY_CATEGORIES } from "../../utils/queries";
 
 import { idbPromise } from '../../utils/helpers';
 
-import { useStoreContext } from "../../utils/GlobalState";
+// import { useStoreContext } from '../../utils/GlobalState';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 
 function CategoryMenu() {
   // const categories = categoryData?.categories || [];
 
-  // we immediately call upon the useStoreContext() Hook to retrieve the current state from the global
+  // we immediately call upon the store Hook to retrieve the current state from the global
   // state object and the dispatch() method to update state.
-  const [state, dispatch] = useStoreContext();
+  // const [state, dispatch] = useStoreContext();
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
   // Because we only need the categories array out of our global state, we simply destructure it out of
   // state so we can use it to provide to our returning JSX.
   const { categories } = state;
